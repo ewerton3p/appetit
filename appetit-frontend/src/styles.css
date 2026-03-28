@@ -1,0 +1,11 @@
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@import 'tailwindcss/theme' layer(tailwind-base);
+@import 'tailwindcss/preflight' layer(tailwind-base);
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/components.css' layer(tailwind-utilities);
+@import 'tailwindcss/utilities' layer(tailwind-utilities);
+@import './styles/utilities.css' layer(tailwind-utilities);
+
+@config "../tailwind.config.js";

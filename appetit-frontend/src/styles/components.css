@@ -1,0 +1,50 @@
+@layer components {
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger,
+  .btn-success {
+    @apply inline-flex items-center justify-center gap-2 font-medium transition-colors;
+    border-radius: var(--radius-sm);
+    &:focus-visible { @apply outline-none ring-2 ring-offset-2; }
+    &:disabled { @apply pointer-events-none opacity-50; }
+  }
+
+  .btn-primary {
+    @apply text-white;
+    background-color: var(--color-primary-600);
+    &:hover { background-color: var(--color-primary-700); }
+  }
+
+  .btn-secondary {
+    @apply hover:bg-gray-100;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background);
+  }
+
+  .btn-danger  { @apply bg-red-500 text-white hover:bg-red-600; }
+  .btn-success { @apply bg-emerald-500 text-white hover:bg-emerald-600; }
+
+  .card {
+    @apply border;
+    border-radius: var(--radius-md);
+    border-color: var(--color-border);
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-card);
+    padding: var(--spacing-card);
+  }
+
+  .input {
+    @apply w-full px-3 py-2 text-sm transition-colors;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background);
+    &:focus {
+      outline: none;
+      border-color: transparent;
+      box-shadow: 0 0 0 2px var(--color-primary-500);
+    }
+  }
+
+  .page-title { @apply text-lg font-semibold tracking-wide uppercase text-gray-700 mb-4; }
+}
