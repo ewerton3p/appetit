@@ -1,0 +1,70 @@
+<div class="flex items-center justify-between mb-4">
+  <h1 class="page-title !mb-0">Categorias</h1>
+  <button
+    type="button"
+    class="btn-primary px-4 py-2"
+    (click)="navigateToNew()"
+  >
+    Nova Categoria
+  </button>
+</div>
+
+<div class="card p-0! overflow-hidden">
+  <p-table
+    [value]="categories()"
+    [tableStyle]="{ 'min-width': '30rem' }"
+    aria-label="Lista de categorias"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Cor</th>
+        <th scope="col" style="width: 140px">Ações</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td>{{ category.name }}</td>
+        <td>
+          <div
+            class="color-swatch"
+            [style.background-color]="category.color"
+            role="img"
+            [attr.aria-label]="'Cor da categoria: ' + category.color"
+          ></div>
+        </td>
+        <td>
+          <div class="flex gap-2">
+            <button
+              type="button"
+              class="btn-success px-3 py-1.5 text-sm"
+              (click)="edit(category)"
+              [attr.aria-label]="'Editar ' + category.name"
+            >
+              <ng-icon name="heroPencilSquare" size="15" aria-hidden="true" />
+              Editar
+            </button>
+            <button
+              type="button"
+              class="btn-danger px-3 py-1.5 text-sm"
+              (click)="delete(category)"
+              [attr.aria-label]="'Excluir ' + category.name"
+            >
+              <ng-icon name="heroTrash" size="15" aria-hidden="true" />
+              Excluir
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="3" class="text-center py-8 text-gray-400">
+          Nenhuma categoria cadastrada.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

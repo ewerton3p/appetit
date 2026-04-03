@@ -23,6 +23,13 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - It MUST pass all AXE checks.
 - It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
 
+### Pages
+
+- Always create pages with separate files: `.ts`, `.html`, and `.scss`
+- Never use inline templates (`template:`) or inline styles (`styles:`) for pages
+- Use `templateUrl` and `styleUrl` pointing to the separate files
+- Each page must have its own folder with the three files (e.g., `my-page/my-page.component.ts`, `my-page/my-page.component.html`, `my-page/my-page.component.scss`)
+
 ### Components
 
 - Keep components small and focused on a single responsibility

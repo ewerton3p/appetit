@@ -1,0 +1,19 @@
+.layout-wrapper {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  height: 100vh;
+  transition: grid-template-columns 0.2s ease;
+}
+
+.layout-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.layout-content {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--color-surface);
+  padding: var(--spacing-section);
+}
