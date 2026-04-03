@@ -1,0 +1,43 @@
+<aside class="sidebar" aria-label="Navegação lateral">
+  <div class="sidebar-logo" aria-label="Logo">
+    <span class="text-white font-bold text-xl tracking-tight">Appétit</span>
+  </div>
+
+  <div class="sidebar-section-label" aria-hidden="true">NAVEGUE PELOS MENUS</div>
+
+  <nav aria-label="Menu principal">
+    @for (item of items; track item.label) {
+    @if (item.children?.length) {
+    <div class="sidebar-group">
+      <button class="sidebar-item" type="button" [class.open]="isExpanded(item)" (click)="toggleItem(item.label)"
+        [attr.aria-expanded]="isExpanded(item)" [attr.aria-controls]="'submenu-' + item.label">
+        @if (item.icon) {
+        <ng-icon [name]="item.icon" size="18" aria-hidden="true" />
+        }
+        <span>{{ item.label }}</span>
+        <span class="chevron" aria-hidden="true">›</span>
+      </button>
+
+      @if (isExpanded(item)) {
+      <ul [id]="'submenu-' + item.label" class="sidebar-children" role="list">
+        @for (child of item.children; track child.label) {
+        <li>
+          <a class="sidebar-subitem" [routerLink]="child.route" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{ child.label }}</a>
+        </li>
+        }
+      </ul>
+      }
+    </div>
+    } @else {
+    <a class="sidebar-item" [routerLink]="item.route" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: item.route === '/' }">
+      @if (item.icon) {
+      <ng-icon [name]="item.icon" size="18" aria-hidden="true" />
+      }
+      <span>{{ item.label }}</span>
+    </a>
+    }
+    }
+  </nav>
+</aside>
