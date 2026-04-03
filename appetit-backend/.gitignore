@@ -1,0 +1,45 @@
+## .NET / C#
+
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+*.rsuser
+
+# Rider
+.idea/
+*.sln.iml
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Publish
+**/publish/
+**/PublishProfiles/
+
+# Logs
+*.log
+
+# Environment / secrets
+appsettings.*.json
+!appsettings.Development.json
+!appsettings.json
+*.env
+.env*
+
+# OS
+.DS_Store
+Thumbs.db
