@@ -25,10 +25,10 @@
     </div>
 
     <div class="flex gap-3 mt-6">
-      <button type="submit" class="btn-primary px-5 py-2" [disabled]="form.invalid" [attr.aria-disabled]="form.invalid">
+      <button type="submit" class="btn-primary px-5 py-2" [disabled]="form.invalid || loading()" [attr.aria-disabled]="form.invalid || loading()">
         {{ isNew() ? 'Criar Categoria' : 'Salvar Alterações' }}
       </button>
-      <button type="button" class="btn-secondary px-5 py-2" (click)="cancel()">
+      <button type="button" class="btn-secondary px-5 py-2" (click)="cancel()" [disabled]="loading()" [attr.aria-disabled]="loading()">
         Cancelar
       </button>
     </div>
