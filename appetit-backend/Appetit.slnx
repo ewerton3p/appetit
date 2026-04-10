@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Backend/">
+    <Project Path="src/Backend/Appetit.API/Appetit.API.csproj" />
+    <Project Path="src/Backend/Appetit.Application/Appetit.Application.csproj" />
+    <Project Path="src/Backend/Appetit.Domain/Appetit.Domain.csproj" />
+    <Project Path="src/Backend/Appetit.Infrastructure/Appetit.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/Appetit.Communication/Appetit.Communication.csproj" />
+    <Project Path="src/Shared/Appetit.Exceptions/Appetit.Exceptions.csproj" />
+    <Project Path="src/Shared/Appetit.Utilities/Appetit.Utilities.csproj" />
+  </Folder>
+</Solution>
