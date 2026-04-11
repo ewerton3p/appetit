@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, LOCALE_ID } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideRouter } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localePtBR from '@angular/common/locales/pt';
@@ -18,7 +18,10 @@ import {
   heroPencilSquare,
   heroTrash,
   heroTag,
-  heroClipboardDocumentList
+  heroClipboardDocumentList,
+  heroEye,
+  heroEyeSlash,
+  heroExclamationCircle,
 } from '@ng-icons/heroicons/outline';
 import Aura from '@primeuix/themes/aura';
 
@@ -28,6 +31,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     MessageService,
+    ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])),
@@ -53,7 +57,10 @@ export const appConfig: ApplicationConfig = {
       heroPencilSquare,
       heroTrash,
       heroTag,
-      heroClipboardDocumentList
+      heroClipboardDocumentList,
+      heroEye,
+      heroEyeSlash,
+      heroExclamationCircle,
     }),
   ],
 };

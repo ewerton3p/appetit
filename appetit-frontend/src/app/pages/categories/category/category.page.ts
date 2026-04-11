@@ -26,7 +26,7 @@ export class CategoryPage implements OnInit {
 
   form: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
-    color: ['6366f1', [Validators.required]],
+    color: ['#6366f1', [Validators.required]],
   });
 
   ngOnInit(): void {
@@ -38,8 +38,7 @@ export class CategoryPage implements OnInit {
       this.loading.set(true);
       this.categoryService.getCategoryById(this.categoryId).subscribe({
         next: (response) => {
-          const color = response.data.color?.replace('#', '') ?? '6366f1';
-          this.form.patchValue({ name: response.data.name, color });
+          this.form.patchValue({ name: response.data.name, color: response.data.color });
           this.loading.set(false);
         },
         error: () => {
@@ -69,7 +68,7 @@ export class CategoryPage implements OnInit {
     const category = {
       id: this.categoryId ?? undefined,
       name: this.form.value.name,
-      color: '#' + this.form.value.color,
+      color: this.form.value.color,
     };
 
     this.loading.set(true);

@@ -1,0 +1,81 @@
+<div class="login-wrapper">
+  <aside class="login-brand" aria-hidden="true">
+    <div class="brand-content">
+      <div class="brand-logo">
+        <ng-icon name="heroShoppingCart" aria-hidden="true" />
+      </div>
+      <h1 class="brand-title">Appetit</h1>
+      <p class="brand-tagline">Gerencie seu cardápio com praticidade e estilo.</p>
+    </div>
+    <div class="brand-shapes" aria-hidden="true">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+    </div>
+  </aside>
+
+  <main class="login-main">
+    <div class="login-card">
+      <header class="login-header">
+        <h2 class="login-title">Bem-vindo de volta</h2>
+        <p class="login-subtitle">Entre com suas credenciais para continuar.</p>
+      </header>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate class="login-form">
+        <app-text-field
+          label="E-mail"
+          inputId="email"
+          type="email"
+          placeholder="seu@email.com"
+          autocomplete="email"
+          [control]="form.controls.email"
+          [required]="true"
+          [errors]="emailErrors"
+        />
+
+        <div class="password-field-wrapper">
+          <app-text-field
+            label="Senha"
+            inputId="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            [control]="form.controls.password"
+            [required]="true"
+            [errors]="passwordErrors"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Ocultar senha' : 'Mostrar senha'"
+            [attr.aria-pressed]="showPassword()"
+          >
+            <ng-icon [name]="showPassword() ? 'heroEyeSlash' : 'heroEye'" aria-hidden="true" />
+          </button>
+        </div>
+
+        @if (errorMessage()) {
+          <div role="alert" class="login-error">
+            <ng-icon name="heroExclamationCircle" aria-hidden="true" />
+            <span>{{ errorMessage() }}</span>
+          </div>
+        }
+
+        <button
+          type="submit"
+          class="login-button"
+          [disabled]="loading()"
+          [attr.aria-busy]="loading()"
+        >
+          @if (loading()) {
+            <span class="spinner" aria-hidden="true"></span>
+            Entrando…
+          } @else {
+            Entrar
+          }
+        </button>
+      </form>
+    </div>
+  </main>
+</div>

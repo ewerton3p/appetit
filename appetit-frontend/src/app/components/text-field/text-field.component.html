@@ -13,6 +13,7 @@
     [placeholder]="placeholder()"
     class="w-full"
     [class.ng-invalid]="showError()"
+    [class.ng-dirty]="showError()"
     [attr.autocomplete]="autocomplete() ?? null"
     [attr.min]="min() ?? null"
     [attr.step]="step() ?? null"
