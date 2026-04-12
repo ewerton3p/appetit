@@ -44,7 +44,7 @@ export class TextFieldComponent {
   private controlStatus = toSignal(
     toObservable(this.control).pipe(
       switchMap((ctrl) =>
-        merge(ctrl.statusChanges, ctrl.valueChanges).pipe(startWith(null))
+        merge(ctrl.events, ctrl.statusChanges, ctrl.valueChanges).pipe(startWith(null))
       )
     )
   );

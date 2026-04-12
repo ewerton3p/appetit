@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -f teste-csharp.sln TesteApi.csproj TesteApi.csproj.user TesteApi.http WeatherForecast.cs Program.cs appsettings.json appsettings.Development.json)",
+      "Bash(rm -rf Controllers Properties bin obj .vs)",
+      "Bash(mkdir -p src/Backend src/Shared)",
+      "Bash(rm -rf Controllers Properties bin obj)",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(dotnet add:*)",
+      "Bash(mkdir -p src/Backend/Appetit.API/Controllers src/Backend/Appetit.API/Middlewares src/Backend/Appetit.API/Extensions src/Backend/Appetit.API/Swagger/Filters src/Backend/Appetit.API/Properties)",
+      "Bash(mkdir -p src/Backend/Appetit.Application/AutoMapper src/Backend/Appetit.Application/DTOs src/Backend/Appetit.Application/Interfaces src/Backend/Appetit.Application/Services src/Backend/Appetit.Application/Validation)",
+      "Bash(mkdir -p src/Backend/Appetit.Domain/Common/Constants src/Backend/Appetit.Domain/Common/Exceptions src/Backend/Appetit.Domain/Common/Utils src/Backend/Appetit.Domain/Models)",
+      "Bash(mkdir -p src/Backend/Appetit.Infrastructure/Data/Configuration src/Backend/Appetit.Infrastructure/Data/DataContext src/Backend/Appetit.Infrastructure/Data/Repositories/Abstractions src/Backend/Appetit.Infrastructure/Data/Seeders src/Backend/Appetit.Infrastructure/Migrations src/Backend/Appetit.Infrastructure/Services)",
+      "Bash(mkdir -p src/Shared/Appetit.Utilities/Converters src/Shared/Appetit.Utilities/Formatters)",
+      "Bash(dotnet build:*)"
+    ]
+  }
+}

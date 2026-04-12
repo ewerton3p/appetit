@@ -1,0 +1,240 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.login-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Brand panel ─────────────────────────────────────────── */
+.login-brand {
+  position: relative;
+  background: var(--color-sidebar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.brand-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.brand-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 2rem;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.45);
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+}
+
+.brand-tagline {
+  font-size: 1rem;
+  color: var(--color-sidebar-text);
+  max-width: 260px;
+  line-height: 1.5;
+}
+
+/* Decorative shapes */
+.brand-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.15);
+}
+
+.shape-1 {
+  width: 320px;
+  height: 320px;
+  top: -80px;
+  right: -80px;
+}
+
+.shape-2 {
+  width: 200px;
+  height: 200px;
+  bottom: 40px;
+  left: -60px;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.shape-3 {
+  width: 120px;
+  height: 120px;
+  bottom: 160px;
+  right: 40px;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* ── Main / form panel ───────────────────────────────────── */
+.login-main {
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-modal);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.login-header {
+  margin-bottom: 2rem;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 0.375rem;
+  letter-spacing: -0.02em;
+}
+
+.login-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Form ────────────────────────────────────────────────── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Password toggle */
+.password-field-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.625rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  transition: color 0.15s;
+  font-size: 1.125rem;
+
+  &:hover {
+    color: var(--color-primary-600);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+}
+
+/* Error alert */
+.login-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  color: #b91c1c;
+  font-size: 0.875rem;
+
+  ng-icon {
+    flex-shrink: 0;
+    font-size: 1.125rem;
+  }
+}
+
+/* Submit button */
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-600);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+  margin-top: 0.25rem;
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary-700);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+/* Spinner */
+.spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

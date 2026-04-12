@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- Suprime o aviso de conflito de versão do Pomelo com EF Core 10.x enquanto
+         Pomelo.EntityFrameworkCore.MySql não lança suporte oficial ao EF Core 10. -->
+    <NoWarn>$(NoWarn);NU1608</NoWarn>
+  </PropertyGroup>
+</Project>

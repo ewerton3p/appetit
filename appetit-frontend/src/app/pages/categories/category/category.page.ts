@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { ColorPicker } from 'primeng/colorpicker';
 import { TextFieldComponent } from '../../../components/text-field/text-field.component';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -15,12 +17,16 @@ export class CategoryPage implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private fb = inject(FormBuilder);
+  private categoryService = inject(CategoryService);
+  private messageService = inject(MessageService);
 
   isNew = signal(true);
+  loading = signal(false);
+  private categoryId: number | null = null;
 
   form: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
-    color: ['6366f1', [Validators.required]],
+    color: ['#6366f1', [Validators.required]],
   });
 
   ngOnInit(): void {
@@ -28,18 +34,84 @@ export class CategoryPage implements OnInit {
     this.isNew.set(id === 'new');
 
     if (id && id !== 'new') {
-      // TODO: carregar categoria pelo id via serviço
-      this.form.patchValue({ name: 'Bebidas', color: '3b82f6' });
+      this.categoryId = Number(id);
+      this.loading.set(true);
+      this.categoryService.getCategoryById(this.categoryId).subscribe({
+        next: (response) => {
+          this.form.patchValue({ name: response.data.name, color: response.data.color });
+          this.loading.set(false);
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Não foi possível carregar a categoria.',
+          });
+          this.loading.set(false);
+          this.router.navigate(['/categories']);
+        },
+      });
     }
   }
 
   submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Formulário inválido',
+        detail: 'Corrija os campos destacados antes de continuar.',
+      });
       return;
     }
-    // TODO: salvar via serviço
-    this.router.navigate(['/categories']);
+
+    const category = {
+      id: this.categoryId ?? undefined,
+      name: this.form.value.name,
+      color: this.form.value.color,
+    };
+
+    this.loading.set(true);
+
+    if (this.isNew()) {
+      this.categoryService.createCategory(category).subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Categoria criada',
+            detail: `"${category.name}" foi criada com sucesso.`,
+          });
+          this.router.navigate(['/categories']);
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Não foi possível criar a categoria.',
+          });
+          this.loading.set(false);
+        },
+      });
+    } else {
+      this.categoryService.updateCategory(category).subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Categoria atualizada',
+            detail: `"${category.name}" foi atualizada com sucesso.`,
+          });
+          this.router.navigate(['/categories']);
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Não foi possível atualizar a categoria.',
+          });
+          this.loading.set(false);
+        },
+      });
+    }
   }
 
   cancel(): void {

@@ -1,5 +1,7 @@
+<p-confirmdialog />
+
 <div class="flex items-center justify-between mb-4">
-  <h1 class="page-title !mb-0">Categorias</h1>
+  <h1 class="page-title mb-0!">Categorias</h1>
   <button
     type="button"
     class="btn-primary px-4 py-2"
@@ -9,9 +11,21 @@
   </button>
 </div>
 
+<div class="search-bar mb-4">
+  <ng-icon name="heroMagnifyingGlass" class="search-icon" aria-hidden="true" />
+  <input
+    type="search"
+    class="search-input"
+    placeholder="Pesquisar categorias…"
+    [formControl]="searchControl"
+    aria-label="Pesquisar categorias"
+  />
+</div>
+
 <div class="card p-0! overflow-hidden">
   <p-table
     [value]="categories()"
+    [loading]="loading()"
     [tableStyle]="{ 'min-width': '30rem' }"
     aria-label="Lista de categorias"
   >
@@ -67,4 +81,14 @@
       </tr>
     </ng-template>
   </p-table>
+
+  @if (pagination().totalPages > 1) {
+    <p-paginator
+      [rows]="pageSize()"
+      [totalRecords]="pagination().totalItems"
+      (onPageChange)="onPageChange($event)"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{first}–{last} de {totalRecords}"
+    />
+  }
 </div>
